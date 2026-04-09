@@ -11,6 +11,11 @@ Repo obsahuje veškerý firemní obsah a výstupy: web, prezentace, e-maily, mat
 ```
 _raw/              # Surové podklady (gitignored) — NEUPRAVOVAT
 content/           # Strukturovaný obsah v Markdownu (single source of truth)
+  pages/           # Stránky webu (homepage, o nás, kontakt)
+  services/        # Služby (workshopy, testování, editace, roční plán)
+  people/          # Bio zakladatelů
+  data/            # Sdílená data (klienti, recenze, statistiky)
+  blog/            # Články
 brand/             # Vizuální identita, tokeny, hlas značky
   tokens.css       # Design tokens (barvy, typografie, spacing)
   voice.md         # Detailní pravidla hlasu značky
