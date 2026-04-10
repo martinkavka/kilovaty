@@ -141,7 +141,9 @@ Tyto fráze nikdy nepoužíváme. Jsou to přesně ten typ vaty, který pomáhá
   - Source Sans 3 — běžný text (`--font-body`)
 - **Barvy:** `--bg: #FFFDF7`, `--bg-warm: #F5F0E6`, `--bg-dark: #1A1714`, `--accent: #C2410C`, `--ink: #1A1714`, `--ink-soft`, `--ink-mute`, `--ink-inverse: #FFFDF7`
 - **Responzivní breakpoint:** 1024 px — gridy (services, stats, ba, quotes, pricing, blog) přepínají na 1 sloupec; services-header se centruje; ba-arrow přechází z absolute na static flow
-- **České uvozovky:** vždy „ (U+201E) a " (U+201C), nikdy ASCII "
+- **Max-width:** Sekce `.s`, `.hero`, `.page-header` používají `padding-inline: max(56px, 50% - 720px)` pro omezení obsahu na ~1440px na širokých monitorech. Nav a footer mají `max-width` na inner wrapperu.
+- **Logo:** 90px výška v navigaci
+- **České uvozovky:** vždy „ (U+201E) a " (U+201C), nikdy ASCII ". **Pozor:** nikdy nepoužívat typografické uvozovky (U+201C/U+201D) v HTML atributech — jen rovné `"`. Typografické uvozovky v atributech rozbijí CSS třídy.
 - **Přístupnost:**
   - Kontrastní poměr minimálně 4.5:1
   - Sémantické HTML (správné heading levels, landmarky, `<button>` místo `<div onclick>`)
@@ -183,7 +185,7 @@ docs/
 
 - **Každá stránka má CTA sekci** (tmavé pozadí, "Domluvit schůzku" → `kontakt.html#schuzka`).
 - **Homepage:** Hero → Stats → Problem/Solution → Before/After → Služby (3 karty + upsell roční program) → Testimonial → Quotes → CTA.
-- **Služby detail:** Popis → Pro koho → Co získáte → Jak to probíhá (4 kroky) → Cena → Testimonial → Cross-sell (2 další služby) → CTA. Sticky CTA bar po 400px scrollu.
+- **Služby detail:** Popis → Pro koho → Co získáte (`.benefit-grid` dlaždice) → Jak to probíhá (`.timeline` vizuální časová osa) → Cena → Testimonial → Cross-sell (2 další služby) → CTA. Sticky CTA bar po 400px scrollu.
 - **Blog:** "Akademie srozumitelnosti" — kuratovaný, bez dat. Featured karty → tematické sekce → interlude (odkaz na workshop) → širší kontext. Každý článek má cílené article-cta (mapované na relevantní službu) + 2 related články.
 - **O nás:** Příběh → Co děláme → Timeline → Zakladatelé → Quotes → Služby karty → CTA.
 - **Kontakt:** Calendly widget s micro-proof (citát Janků) + kontaktní údaje + fakturační údaje.
@@ -221,12 +223,14 @@ Každý blogpost má cílené CTA směřující na relevantní službu:
 - `.sticky-cta` — fixní CTA bar na service detail stránkách.
 - `.calendly-reassurance` — micro-proof nad Calendly widgetem.
 - `.services-upsell` — jednořádkový odkaz na roční program / všechny služby.
+- `.benefit-grid` / `.benefit-tile` — 2-sloupcový grid dlaždic (1 sloupec mobil). Warm pozadí, accent border-left. Používá se na všech service detail stránkách pro „Co získáte" / „Proč se vyplatí" / „Co měříme".
+- `.timeline` / `.timeline-step` / `.timeline-num` / `.timeline-content` — vizuální časová osa se svislou čárou a accent kolečky s čísly. Používá se na všech service detail stránkách pro „Jak to probíhá". Pozor: uvnitř `.content` je potřeba override `.content ol.timeline` kvůli specificitě.
 
 ## Fáze projektu
 
 > Tato sekce je interní kontext pro orientaci v prioritách. Termíny a fáze se nikdy nepromítají do produkčních textů, webu ani prezentací.
 
-**Web kilovaty.cz:** Všechny stránky hotové, konverzně optimalizované (2 kola UX/CRO auditu). Zbývá finální vizuální ladění a nasazení.
+**Web kilovaty.cz:** Všechny stránky hotové, konverzně optimalizované (2 kola UX/CRO auditu). Nasazeno na GitHub Pages (martinkavka.github.io/kilovaty/). Dalibor kontroluje na velkém monitoru.
 
 **Akutně:**
 1. Dokončení webu — poslední vizuální úpravy, nasazení
