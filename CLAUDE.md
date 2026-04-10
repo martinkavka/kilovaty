@@ -134,23 +134,102 @@ Tyto fráze nikdy nepoužíváme. Jsou to přesně ten typ vaty, který pomáhá
 ## Pravidla pro kód
 
 - **Vanilla HTML + CSS, bez build stepu.** Žádný framework, bundler ani preprocesory, pokud to nebude výslovně schváleno.
-- **Design tokens v `brand/tokens.css`.** Barvy, typografie, spacing — vše přes CSS custom properties. Nikdy hardcoded hex hodnoty v komponentách.
+- **Jediný CSS soubor:** `web/style.css` — všechny komponenty a styly na jednom místě.
+- **Design tokens** jsou definované přímo v `:root` v `style.css` (ne v externím souboru).
 - **Fonty:**
-  - Fraunces — nadpisy
-  - Geist — běžný text
-  - Geist Mono — labely, technické údaje
-- **Responzivní breakpoint:** 1024 px (mobile-first)
+  - Bricolage Grotesque — nadpisy (`--font-heading`)
+  - Source Sans 3 — běžný text (`--font-body`)
+- **Barvy:** `--bg: #FFFDF7`, `--bg-warm: #F5F0E6`, `--bg-dark: #1A1714`, `--accent: #C2410C`, `--ink: #1A1714`, `--ink-soft`, `--ink-mute`, `--ink-inverse: #FFFDF7`
+- **Responzivní breakpoint:** 1024 px — gridy (services, stats, ba, quotes, pricing, blog) přepínají na 1 sloupec; services-header se centruje; ba-arrow přechází z absolute na static flow
+- **České uvozovky:** vždy „ (U+201E) a " (U+201C), nikdy ASCII "
 - **Přístupnost:**
   - Kontrastní poměr minimálně 4.5:1
   - Sémantické HTML (správné heading levels, landmarky, `<button>` místo `<div onclick>`)
   - Viditelné focus stavy na všech interaktivních prvcích
+  - Skip-to-content link na každé stránce
+  - Alt texty na všech obrázcích
+  - Mobilní hamburger menu s `aria-expanded`
+
+## Web kilovaty.cz — stav a architektura
+
+Web je **z velké části hotový** (duben 2026). Všechny stránky existují a jsou konverzně optimalizované.
+
+### Struktura souborů
+
+```
+web/
+  index.html                      # Homepage
+  o-nas.html                      # O nás + příběh + zakladatelé + služby nudge
+  sluzby.html                     # Přehled služeb + roční program pricing
+  sluzby/
+    jak-psat.html                  # Workshop hlavní (bestseller)
+    psani-s-ai.html                # Workshop AI
+    emaily.html                    # Workshop e-maily
+    testovani.html                 # Testování srozumitelnosti
+    editace.html                   # Editace textů (s before/after ukázkou)
+    konzultace.html                # Konzultace
+    srozumitelna-organizace.html   # Roční program (3 cenové varianty)
+  blog.html                       # Blog index (Akademie srozumitelnosti)
+  blog/
+    01-naklady.html … 13-digitalizace.html  # 13 článků
+  kontakt.html                    # Kontakt + Calendly widget
+  style.css                       # Jediný CSS soubor
+  assets/
+    photos/                        # Fotky zakladatelů a recenzentů
+    logo/                          # Loga Kilovaty
+```
+
+### Konverzní architektura
+
+- **Každá stránka má CTA sekci** (tmavé pozadí, "Domluvit schůzku" → `kontakt.html#schuzka`).
+- **Homepage:** Hero → Stats → Problem/Solution → Before/After → Služby (3 karty + upsell roční program) → Testimonial → Quotes → CTA.
+- **Služby detail:** Popis → Pro koho → Co získáte → Jak to probíhá (4 kroky) → Cena → Testimonial → Cross-sell (2 další služby) → CTA. Sticky CTA bar po 400px scrollu.
+- **Blog:** "Akademie srozumitelnosti" — kuratovaný, bez dat. Featured karty → tematické sekce → interlude (odkaz na workshop) → širší kontext. Každý článek má cílené article-cta (mapované na relevantní službu) + 2 related články.
+- **O nás:** Příběh → Co děláme → Timeline → Zakladatelé → Quotes → Služby karty → CTA.
+- **Kontakt:** Calendly widget s micro-proof (citát Janků) + kontaktní údaje + fakturační údaje.
+
+### Testimonials — mapování na stránky
+
+6 recenzí rozmístěných po webu, každá na relevantním místě:
+- **Reedová** (Centrum pro regionální rozvoj) → homepage featured testimonial, testovani.html, srozumitelna-organizace.html
+- **Janků** (Ústavní soud) → homepage quotes, sluzby.html featured, emaily.html, kontakt.html micro-proof
+- **Syručková** (SUZ MV) → homepage quotes, jak-psat.html
+- **Bendová** (marketing) → homepage quotes, psani-s-ai.html
+- **Svatoňová** → editace.html
+- **Precek** → konzultace.html
+
+### Blog article-CTA mapování
+
+Každý blogpost má cílené CTA směřující na relevantní službu:
+- Technické články (03, 04, 06, 07, 12) → workshop jak-psat.html
+- Testování (02, 05) → testovani.html
+- E-maily (09) → emaily.html
+- Jazyk (08, 10) → editace.html
+- Konceptuální (01, 11, 13) → kontakt.html#schuzka
+
+### Vizuální vzory (CSS komponenty)
+
+- `.ba-grid` — Before/After porovnání (2 sloupce desktop, 1 sloupec mobil). Ručně kreslená SVG šipka mezi panely (absolutně pozicovaná na desktopu, v grid flow na mobilu s negativním marginem pro přesah do obou sekcí). Škrty v Před panelu používají SVG vlnovku jako `background-image` (ne rovné čáry) — text je rozdělen do více `.x` spanů, liché/sudé mají jinou vlnovku.
+- `.service` / `.service--featured` — karty služeb s badge "Bestseller".
+- `.featured-testimonial` — velký testimonial pod sekcí služeb.
+- `.service-testimonial` — menší testimonial na detail stránkách (max-width 760px, border-left accent).
+- `.blog-featured` — 3-sloupcový grid featured článků.
+- `.blog-cards` — 2-sloupcový grid článků s pull quotes.
+- `.blog-interlude` — vizuální přerušení v blogu s CTA na workshop.
+- `.article-cta` — cílená CTA box uvnitř blogpostu.
+- `.related` — sekce "Čtěte dál" s 2 souvisejícími články.
+- `.sticky-cta` — fixní CTA bar na service detail stránkách.
+- `.calendly-reassurance` — micro-proof nad Calendly widgetem.
+- `.services-upsell` — jednořádkový odkaz na roční program / všechny služby.
 
 ## Fáze projektu
 
 > Tato sekce je interní kontext pro orientaci v prioritách. Termíny a fáze se nikdy nepromítají do produkčních textů, webu ani prezentací.
 
+**Web kilovaty.cz:** Všechny stránky hotové, konverzně optimalizované (2 kola UX/CRO auditu). Zbývá finální vizuální ladění a nasazení.
+
 **Akutně:**
-1. Nový web kilovaty.cz (kompletní redesign)
+1. Dokončení webu — poslední vizuální úpravy, nasazení
 2. Prezentace na školení (16. 4. 2026)
 
 **Postupně podle potřeby:**

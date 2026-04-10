@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kilovaty — Moodboard v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg:          #FFFDF7;
+    --bg-warm:     #F5F0E6;
+    --bg-dark:     #1A1714;
+
+    --ink:         #1A1714;
+    --ink-soft:    #1A1714;
+    --ink-mute:    rgba(26, 23, 20, 0.40);
+    --ink-inverse: #FFFDF7;
+
+    --accent:      #C2410C;
+    --accent-hover:#A3370A;
+    --accent-light:#FDF0EB;
+    --accent-warm: #E86A32;
+
+    --line:        rgba(26, 23, 20, 0.08);
+    --line-strong: rgba(26, 23, 20, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Source Sans 3', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .wrap { max-width: 1440px; margin: 0 auto; }
+
+  /* ============== NAV ============== */
+  nav.top {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 253, 247, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1440px; margin: 0 auto;
+    padding: 16px 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .logo em { font-style: normal; font-weight: 400; color: var(--accent); }
+  .nav-menu { display: flex; gap: 28px; }
+  .nav-menu a {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-menu a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--accent);
+    color: var(--ink-inverse);
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--accent-hover); }
+
+  /* ============== HERO ============== */
+  .hero {
+    padding: 100px 56px 80px;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    font-size: clamp(52px, 9vw, 128px);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    margin-bottom: 56px;
+    max-width: 1200px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.3s forwards;
+  }
+  .hero h1 .strike {
+    position: relative;
+    display: inline-block;
+    color: var(--ink-mute);
+    font-weight: 300;
+  }
+  .hero h1 .strike::after {
+    content: "";
+    position: absolute;
+    top: 52%; left: -1%; right: -1%;
+    height: 5px;
+    background: var(--accent);
+    transform: rotate(-1.5deg);
+  }
+  .hero h1 em {
+    font-style: normal;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-sub {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 60px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.6s forwards;
+  }
+  .hero-text {
+    max-width: 480px;
+  }
+  .hero-text p {
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .hero-text p strong {
+    font-weight: 600;
+  }
+  .hero-actions {
+    display: flex; gap: 12px;
+    flex-shrink: 0;
+  }
+  .btn {
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center; gap: 8px;
+    transition: all 0.15s;
+  }
+  .btn-accent {
+    background: var(--accent);
+    color: var(--ink-inverse);
+  }
+  .btn-accent:hover { background: var(--accent-hover); }
+  .btn-accent::after { content: "→"; transition: transform 0.2s; }
+  .btn-accent:hover::after { transform: translateX(3px); }
+  .btn-soft {
+    background: var(--bg-warm);
+    color: var(--ink);
+  }
+  .btn-soft:hover { background: #ede7d8; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============== TRUSTED ============== */
+  .trusted {
+    padding: 28px 56px;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--line);
+  }
+  .trusted-label {
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .trusted-items { display: flex; gap: 28px; flex-wrap: wrap; }
+  .trusted-item {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  /* ============== GENERIC SECTION ============== */
+  .s {
+    padding: 140px 56px;
+    position: relative;
+  }
+  .s--warm { background: var(--bg-warm); }
+  .s--dark { background: var(--bg-dark); color: var(--ink-inverse); }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .eyebrow::before { content: ""; width: 20px; height: 2px; background: var(--accent); }
+
+  .s-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .s--dark .s-title { color: var(--ink-inverse); }
+  .s-title em { font-style: normal; color: var(--accent); font-weight: 300; }
+  .s--dark .s-title em { color: var(--accent-warm); }
+
+  /* ============== MANIFEST ============== */
+  .manifest .s-title {
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.1;
+    max-width: 1000px;
+  }
+  .manifest .hl {
+    background: var(--accent);
+    color: var(--ink-inverse);
+    padding: 2px 10px;
+    border-radius: 4px;
+  }
+  .manifest-source {
+    margin-top: 36px;
+    font-size: 16px;
+    color: var(--ink-mute);
+  }
+
+  /* ============== STATS — big visual punch ============== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-top: 80px;
+  }
+  .stat-num {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 300;
+    font-size: clamp(72px, 10vw, 140px);
+    line-height: 0.8;
+    color: var(--accent);
+    letter-spacing: -0.05em;
+    margin-bottom: 20px;
+  }
+  .stat-num span { font-size: 0.4em; vertical-align: top; margin-left: 2px; }
+  .stat-punch {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .stat-detail {
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* ============== PROBLÉM / ŘEŠENÍ (z C: kroužky) ============== */
+  .ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 72px;
+    align-items: start;
+  }
+  .ps-col h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+  .ps-col h3 em { font-style: normal; color: var(--accent); font-weight: 400; }
+  .ps-list {
+    list-style: none;
+  }
+  .ps-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 17px;
+    line-height: 1.5;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .ps-list li:first-child { border-top: 1px solid var(--line); }
+  .ps-list li strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .ps-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ps-circle--empty {
+    border: 1.5px solid var(--line-strong);
+    background: transparent;
+  }
+  .ps-circle--filled {
+    background: var(--accent-light);
+    position: relative;
+    border: 1.5px solid var(--accent);
+  }
+  .ps-circle--filled::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ============== SLUŽBY ============== */
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 60px;
+    margin-bottom: 64px;
+  }
+  .services-header .s-title {
+    font-size: clamp(36px, 5vw, 64px);
+  }
+  .services-lead {
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 400;
+    max-width: 400px;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .service {
+    padding: 40px 36px;
+    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    transition: border-color 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .service--featured {
+    border-top: 3px solid var(--accent);
+  }
+  .service-badge {
+    position: absolute;
+    top: 0; right: 20px;
+    background: var(--accent);
+    color: var(--ink-inverse);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 5px 12px;
+    border-radius: 0 0 6px 6px;
+  }
+  .s--warm .service { background: var(--ink-inverse); border-color: var(--line); }
+  .service:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 40px rgba(194, 65, 12, 0.08);
+  }
+  .service-tag {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    align-self: flex-start;
+  }
+  .service h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .service-pitch {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .service-facts {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.8;
+  }
+  .service-price {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .service-price span {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-left: 4px;
+  }
+
+  /* ============== BEFORE / AFTER ============== */
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 64px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .ba-col { padding: 48px 44px; }
+  .ba-before { background: var(--bg-warm); }
+  .ba-after { background: var(--bg); }
+  .ba-tag {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .ba-before .ba-tag { background: var(--ink-mute); color: var(--bg); }
+  .ba-after .ba-tag { background: var(--accent); color: var(--ink-inverse); }
+  .ba-text {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .ba-before .ba-text { color: var(--ink-mute); }
+  .ba-before .ba-text .x {
+    position: relative; display: inline;
+  }
+  .ba-before .ba-text .x::after {
+    content: "";
+    position: absolute;
+    top: 52%; left: -2px; right: -2px;
+    height: 2px;
+    background: var(--accent);
+    transform: rotate(-1deg);
+  }
+  .ba-after .ba-text { color: var(--ink); font-size: 24px; font-weight: 500; }
+  .ba-meta {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* ============== ABOUT ============== */
+  .about-story {
+    max-width: 760px;
+    margin: 48px 0 72px;
+  }
+  .about-story p {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+  }
+  .about-story p em { font-style: normal; color: var(--accent); }
+  .about-story .muted {
+    color: var(--ink);
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 16px;
+  }
+  .about-photo {
+    margin: 48px 0;
+    max-width: 760px;
+  }
+  .about-photo img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+  }
+  .about-photo-caption {
+    margin-top: 12px;
+    font-size: 16px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .person {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 40px 36px;
+  }
+  .person-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid var(--line);
+  }
+  .person-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .person-name em { font-style: normal; color: var(--accent); }
+  .person-role {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .person-bio {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .person-bio strong { font-weight: 600; }
+  .person-projects {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--ink);
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .person-projects strong {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+
+  /* ============== QUOTES ============== */
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 64px;
+  }
+  .quote {
+    border-left: 3px solid var(--accent);
+    padding: 32px 36px;
+    background: var(--bg);
+    border-radius: 0 12px 12px 0;
+  }
+  .s--warm .quote { background: var(--ink-inverse); }
+  .quote-text {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .quote-text em { font-style: normal; color: var(--accent); }
+  .quote-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .quote-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center; justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .quote-author-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .quote-author-role {
+    font-size: 16px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* ============== CTA ============== */
+  .cta {
+    text-align: center;
+  }
+  .cta .s-title {
+    margin: 0 auto 16px;
+    max-width: 700px;
+    font-size: clamp(40px, 5.5vw, 72px);
+    color: var(--ink-inverse);
+  }
+  .cta-sub {
+    font-size: 17px;
+    color: rgba(255,253,247,0.45);
+    margin-bottom: 40px;
+  }
+  .cta-btn {
+    background: var(--accent);
+    color: var(--ink-inverse);
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center; gap: 8px;
+    transition: background 0.15s;
+  }
+  .cta-btn:hover { background: var(--accent-hover); }
+  .cta-btn::after { content: "→"; }
+  .cta-mail {
+    margin-top: 24px;
+    font-size: 16px;
+    color: rgba(255,253,247,0.25);
+  }
+  .cta-mail a {
+    color: var(--accent-warm);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,106,50,0.3);
+  }
+
+  /* ============== FOOTER ============== */
+  footer {
+    padding: 56px 56px 28px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  .footer-brand {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .footer-brand em { font-style: normal; color: var(--accent); }
+  .footer-tag {
+    font-size: 16px;
+    color: var(--ink);
+    font-weight: 400;
+    max-width: 280px;
+    line-height: 1.5;
+  }
+  .footer-links {
+    display: flex;
+    gap: 48px;
+  }
+  .footer-col h4 {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 16px;
+    color: var(--ink);
+    font-weight: 400;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .footer-bottom .joke { font-style: normal; }
+
+  /* ============== Z PREZENTACE: dekorativní detaily ============== */
+
+
+
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width: 1024px) {
+    .nav-inner, .hero, .s, .trusted, footer { padding-left: 24px; padding-right: 24px; }
+    .nav-menu { display: none; }
+    .hero { min-height: auto; padding: 64px 24px; }
+    .hero-sub { flex-direction: column; align-items: flex-start; gap: 32px; }
+    .services-header { flex-direction: column; gap: 20px; }
+    .services-grid, .quotes-grid, .people, .problem-grid,
+    .footer-links { grid-template-columns: 1fr; flex-direction: column; }
+    .stats-grid { grid-template-columns: 1fr; gap: 40px; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .ba-before { border-bottom: 1px solid var(--line); }
+    .footer-top { flex-direction: column; }
+    .s { padding: 80px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a href="#" class="logo">Kilovaty<em>.</em></a>
+    <div class="nav-menu">
+      <a href="#sluzby">Workshopy</a>
+      <a href="#sluzby">Služby</a>
+      <a href="#o-nas">O nás</a>
+      <a href="#">Blog</a>
+    </div>
+    <button class="nav-cta">Domluvit schůzku</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <h1>
+      <span class="strike">Tímto&nbsp;sdělujeme,</span><br>
+      že vaše texty<br>
+      nikdo <em>nečte.</em>
+    </h1>
+
+    <div class="hero-sub">
+      <div class="hero-text">
+        <p><strong>Učíme firmy a úřady psát srozumitelně.</strong></p>
+        <p>Bez ztráty právní přesnosti.<br>Bez ztráty času.<br>Bez ztráty čtenářů.</p>
+      </div>
+      <div class="hero-actions">
+        <a href="#kontakt" class="btn btn-accent">Chci workshop</a>
+        <a href="#sluzby" class="btn btn-soft">Co děláme</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUSTED ============ -->
+  <div class="trusted">
+    <span class="trusted-label">Důvěřují nám</span>
+    <div class="trusted-items">
+      <span class="trusted-item">Ministerstvo spravedlnosti</span>
+      <span class="trusted-item">Generali Česká pojišťovna</span>
+      <span class="trusted-item">PRE</span>
+      <span class="trusted-item">IKEA</span>
+      <span class="trusted-item">Nadace OSF</span>
+      <span class="trusted-item">Ministerstvo vnitra</span>
+    </div>
+  </div>
+
+  <!-- ============ STATS ============ -->
+  <section class="s">
+    <div class="eyebrow">Data, ne dojmy</div>
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">25<span>%</span></div>
+        <div class="stat-punch">Čechů má potíže se čtením.</div>
+        <div class="stat-detail">Každý čtvrtý. To je 1,7 milionu lidí.</div>
+      </div>
+      <div>
+        <div class="stat-num">82<span>%</span></div>
+        <div class="stat-punch">textu čtenáři přeskočí.</div>
+        <div class="stat-detail">Pište bez vaty. Jinak se to důležité ztratí.</div>
+      </div>
+      <div>
+        <div class="stat-num">23<span>%</span></div>
+        <div class="stat-punch">e-mailů potřebuje upřesnění.</div>
+        <div class="stat-detail">Jeden špatný mail = 8–12 minut navíc. To je 50 000 Kč ročně na osobu.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MANIFEST ============ -->
+  <section class="s s--warm manifest">
+    <div class="eyebrow">Proč to děláme</div>
+    <h2 class="s-title">
+      Špatné texty stojí americké firmy <em>6 % mzdových nákladů.</em><br>
+      České firmy nikdo nepočítal.<br><span class="hl">My ano.</span>
+    </h2>
+    <div class="manifest-source">Josh Bernoff, „The Writing Cost Calculator", 2016</div>
+  </section>
+
+  <!-- ============ PROBLEM → SOLUTION ============ -->
+  <section class="s">
+    <div class="eyebrow">Známé to?</div>
+    <h2 class="s-title" style="font-size: clamp(36px, 5vw, 64px); max-width: 800px;">
+      Vaše texty jsou v pořádku.<br>
+      <em>Akorát jim nikdo nerozumí.</em>
+    </h2>
+
+    <div class="ps-grid">
+      <div class="ps-col">
+        <h3>Tohle vás <em>trápí</em></h3>
+        <ul class="ps-list">
+          <li>
+            <div class="ps-circle ps-circle--empty"></div>
+            <span>Napíšete mail. Přijde <strong>pět dotazů</strong>, co jste tím mysleli.</span>
+          </li>
+          <li>
+            <div class="ps-circle ps-circle--empty"></div>
+            <span>Zveřejníte pokyn. Nikdo ho <strong>nedočte</strong>.</span>
+          </li>
+          <li>
+            <div class="ps-circle ps-circle--empty"></div>
+            <span>Komunikace mezi odděleními? Každý mluví <strong>jiným jazykem</strong>.</span>
+          </li>
+          <li>
+            <div class="ps-circle ps-circle--empty"></div>
+            <span>Vaše texty zní, jako byste je psali <strong>pro soudce, ne pro lidi</strong>.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="ps-col">
+        <h3>Tohle <em>chcete</em></h3>
+        <ul class="ps-list">
+          <li>
+            <div class="ps-circle ps-circle--filled"></div>
+            <span>Psát tak, aby čtenář <strong>pochopil na první dobrou</strong>.</span>
+          </li>
+          <li>
+            <div class="ps-circle ps-circle--filled"></div>
+            <span>Snížit dotazy na zákaznickou linku. <strong>Reálně</strong>.</span>
+          </li>
+          <li>
+            <div class="ps-circle ps-circle--filled"></div>
+            <span>Působit lidsky. Ne jako <strong>automat na paragraf</strong>.</span>
+          </li>
+          <li>
+            <div class="ps-circle ps-circle--filled"></div>
+            <span>Nepřicházet o peníze kvůli textům, které <strong>nikdo nedomyslel</strong>.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLUŽBY ============ -->
+  <section class="s s--warm" id="sluzby">
+    <div class="services-header">
+      <div>
+        <div class="eyebrow">Co děláme</div>
+        <h2 class="s-title">Tři způsoby, jak zhubnout<br>o <em>kilo&nbsp;vaty.</em></h2>
+      </div>
+      <p class="services-lead">
+        Nejsme reklamka.<br>
+        Jsme konzultanti a lektoři.<br>
+        Měníme způsob, jak vaše firma přemýšlí o textu.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service service--featured">
+        <span class="service-badge">Bestseller</span>
+        <span class="service-tag">Workshop</span>
+        <h3>Jak psát, aby to fakt četli</h3>
+        <p class="service-pitch">
+          Hlavní workshop. 6 hodin.<br>
+          2 lektoři. Max 15 lidí.<br>
+          Pracujete na vlastních textech, ne na cvičných příkladech.
+        </p>
+        <div class="service-facts">
+          6 hodin · 2 lektoři · max 15 lidí
+        </div>
+        <div class="service-price">39 900 Kč</div>
+      </div>
+      <div class="service">
+        <span class="service-tag">Workshop</span>
+        <h3>Psaní s AI, které nezní jako od AI</h3>
+        <p class="service-pitch">
+          AI vám text napíše za minutu.<br>
+          Ale pozná to každý.<br>
+          Ukážeme vám, jak s AI psát rychle a přitom lidsky.
+        </p>
+        <div class="service-facts">
+          4 hodiny · max 15 lidí
+        </div>
+        <div class="service-price">29 900 Kč</div>
+      </div>
+      <div class="service">
+        <span class="service-tag">Workshop</span>
+        <h3>E-maily, které šetří čas</h3>
+        <p class="service-pitch">
+          Jeden špatný e-mail = 8 minut navíc.<br>
+          Sto lidí ve firmě = 5 milionů ročně.<br>
+          Tohle se vyplatí.
+        </p>
+        <div class="service-facts">
+          4 hodiny · max 15 lidí
+        </div>
+        <div class="service-price">29 900 Kč</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BEFORE / AFTER ============ -->
+  <section class="s">
+    <div class="eyebrow">Vata vs. signál</div>
+    <h2 class="s-title" style="font-size: clamp(36px, 5vw, 64px);">
+      38 slov. Jedno sdělení.<br>
+      <em>9 slov stačí.</em>
+    </h2>
+
+    <div class="ba-grid">
+      <div class="ba-col ba-before">
+        <span class="ba-tag">Před</span>
+        <p class="ba-text">
+          <span class="x">V návaznosti na výše uvedené</span> Vás <span class="x">tímto zdvořile</span> žádáme o <span class="x">poskytnutí součinnosti spočívající v dodání</span> relevantních <span class="x">podkladových materiálů</span>, a to <span class="x">nejpozději do data konce kalendářního měsíce.</span>
+        </p>
+        <div class="ba-meta">
+          <span>38 slov</span>
+          <span>14 vteřin čtení</span>
+        </div>
+      </div>
+      <div class="ba-col ba-after">
+        <span class="ba-tag">Po</span>
+        <p class="ba-text">
+          Pošlete nám prosím podklady do konce měsíce. Děkujeme.
+        </p>
+        <div class="ba-meta">
+          <span>9 slov · –76 %</span>
+          <span>3 vteřiny čtení</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ O NÁS ============ -->
+  <section class="s" id="o-nas">
+    <div class="eyebrow">Kdo jsme</div>
+    <h2 class="s-title" style="font-size: clamp(36px, 5vw, 64px);">
+      Na plný výkon <em>proti vatě.</em>
+    </h2>
+
+    <div class="about-story">
+      <p>Začalo to <em>u kafe.</em></p>
+      <p>Konkrétně u filtru v holešovickém Vnitroblocku, v červenci 2023. Daliborovi zrovna vyšla kniha. Martin školil efektivní psaní.</p>
+      <p class="muted">U druhého filtru jsme věděli, že to chceme dělat spolu. V lednu 2025 první veřejný workshop. V květnu PRE. V září Kilovaty s.r.o.</p>
+    </div>
+
+    <div class="people">
+      <div class="person">
+        <h3 class="person-name">Martin <em>Kavka</em></h3>
+        <div class="person-role">Expert na e-maily a newslettery</div>
+        <p class="person-bio">Bývalý novinář. Stojí za projekty <strong>Newslettery.cz</strong>, Tvůrcast a Čeština 2.0. Lektoruje masterclasses o psaní s AI.</p>
+        <div class="person-projects">
+          <strong>Projekty</strong>
+          Newslettery.cz · Tvůrcast · Čeština 2.0 · Promptně
+        </div>
+      </div>
+      <div class="person">
+        <h3 class="person-name">Dalibor <em>Behún</em></h3>
+        <div class="person-role">Překladatel, korektor, copywriter</div>
+        <p class="person-bio">Jazykový korektor a copywriter. Zaměřuje se na <strong>přístupnou komunikaci</strong>. Spoluautor dvou knih.</p>
+        <div class="person-projects">
+          <strong>Knihy</strong>
+          Pište správně česky · Pište čtivě a srozumitelně
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTES ============ -->
+  <section class="s s--warm">
+    <div class="eyebrow">Řekli o nás</div>
+    <h2 class="s-title" style="font-size: clamp(36px, 5vw, 64px);">
+      Lidé, kteří s námi <em>seděli.</em>
+    </h2>
+
+    <div class="quotes-grid">
+      <div class="quote">
+        <p class="quote-text">
+          Ve státní správě bývá srozumitelnost <em>ohrožený druh.</em> Martin s Daliborem nás naučili, jak ji zachránit.
+        </p>
+        <div class="quote-author">
+          <div class="quote-avatar">MR</div>
+          <div>
+            <div class="quote-author-name">Markéta Reedová</div>
+            <div class="quote-author-role">Ředitelka komunikace, CRR</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote">
+        <p class="quote-text">
+          Lepší kurz byste hledali <em>marně.</em> Sázka na jistotu.
+        </p>
+        <div class="quote-author">
+          <div class="quote-avatar">ŠJ</div>
+          <div>
+            <div class="quote-author-name">Štěpán Janků</div>
+            <div class="quote-author-role">Ústavní soud</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote">
+        <p class="quote-text">
+          Část kolegů nebyla nadšená z představy školení o „úředních textech". Odcházeli <em>všichni spokojení.</em>
+        </p>
+        <div class="quote-author">
+          <div class="quote-avatar">JS</div>
+          <div>
+            <div class="quote-author-name">Jana Syručková</div>
+            <div class="quote-author-role">SUZ MV</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote">
+        <p class="quote-text">
+          Informace přínosné, mělo to hlavu a patu. U některých úkolů jsme se hodně <em>nasmáli.</em>
+        </p>
+        <div class="quote-author">
+          <div class="quote-avatar">SS</div>
+          <div>
+            <div class="quote-author-name">Stanislava Svatoňová</div>
+            <div class="quote-author-role">Specialistka na digitální obsah</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="s s--dark cta" id="kontakt">
+    <h2 class="s-title">
+      Bojujete s vatou?<br><em>Pojďme to probrat.</em>
+    </h2>
+    <p class="cta-sub">30 minut. Zdarma. Bez závazků. Bez vaty.</p>
+    <a href="#" class="cta-btn">Vybrat termín</a>
+    <div class="cta-mail">
+      Nebo napište: <a href="mailto:jsme@kilovaty.cz">jsme@kilovaty.cz</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Kilovaty<em>.</em></div>
+        <p class="footer-tag">Likvidujeme slovní vatu, která dusí vaše čtenáře a stojí vás čas i peníze.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Služby</h4>
+          <a href="#">Workshopy</a>
+          <a href="#">Editace</a>
+          <a href="#">Testování</a>
+          <a href="#">Konzultace</a>
+        </div>
+        <div class="footer-col">
+          <h4>Firma</h4>
+          <a href="#">O nás</a>
+          <a href="#">Blog</a>
+          <a href="#">Kontakt</a>
+        </div>
+        <div class="footer-col">
+          <h4>Spojení</h4>
+          <a href="mailto:jsme@kilovaty.cz">jsme@kilovaty.cz</a>
+          <a href="tel:+420605412328">+420 605 412 328</a>
+          <a href="tel:+420737383671">+420 737 383 671</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Kilovaty s.r.o. · IČ 23686316</span>
+      <span class="joke">Tento web běží díky litrům kávy a lásce k dobrému psaní.</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

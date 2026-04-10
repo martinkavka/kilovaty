@@ -1,0 +1,100 @@
+/* ============================================
+   Kilovaty — Design Tokens
+   ============================================
+   Jediný zdroj pravdy pro barvy, typografii
+   a spacing. Nikdy hardcoded hex hodnoty
+   v komponentách.
+   ============================================ */
+
+:root {
+  /* --- Barvy --- */
+
+  /* Pozadí */
+  --color-bg:           #FFFDF7;
+  --color-bg-warm:      #F5F0E6;
+  --color-bg-dark:      #1A1714;
+
+  /* Text */
+  --color-text:         #1A1714;
+  --color-text-soft:    #1A1714;
+  --color-text-muted:   rgba(26, 23, 20, 0.55);
+  --color-text-inverse: #FFFDF7;
+
+  /* Akcentová barva — energie, kilovaty ⚡ */
+  --color-accent:       #C2410C;
+  --color-accent-hover: #A3370A;
+  --color-accent-light: #FDF0EB;
+  --color-accent-warm:  #E86A32;
+
+  /* Přeškrtnutí — tlumená pro kontrast s živým textem */
+  --color-strike:       rgba(26, 23, 20, 0.55);
+  --color-strike-line:  #C2410C;
+
+  /* Bordery a separátory */
+  --color-border:       rgba(26, 23, 20, 0.08);
+  --color-border-strong:rgba(26, 23, 20, 0.15);
+
+  /* --- Typografie --- */
+
+  --font-heading:  'Bricolage Grotesque', Georgia, serif;
+  --font-body:     'Source Sans 3', system-ui, -apple-system, sans-serif;
+
+  /* Velikosti (fluid, clamp) */
+  --text-xs:   clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+  --text-sm:   clamp(0.875rem, 0.8rem + 0.3vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem + 0.6vw, 1.3125rem);
+  --text-xl:   clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --text-2xl:  clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --text-3xl:  clamp(2.5rem, 1.8rem + 3.5vw, 4rem);
+
+  /* Řádkování */
+  --leading-tight:  1.15;
+  --leading-snug:   1.3;
+  --leading-normal: 1.6;
+  --leading-loose:  1.8;
+
+  /* Váha */
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Letter-spacing */
+  --tracking-tight:  -0.03em;
+  --tracking-snug:   -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.08em;
+
+  /* --- Spacing --- */
+
+  --space-xs:  0.25rem;   /*  4px */
+  --space-sm:  0.5rem;    /*  8px */
+  --space-md:  1rem;      /* 16px */
+  --space-lg:  1.5rem;    /* 24px */
+  --space-xl:  2rem;      /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+  --space-3xl: 4rem;      /* 64px */
+  --space-4xl: 6rem;      /* 96px */
+  --space-5xl: 8rem;      /* 128px */
+
+  /* --- Layout --- */
+
+  --max-width:     90rem;   /* 1440px */
+  --max-width-sm:  40rem;   /* 640px — pro text */
+  --max-width-md:  56rem;   /* 896px */
+  --max-width-lg:  72rem;   /* 1152px */
+  --breakpoint:    64rem;   /* 1024px */
+
+  /* --- Border radius --- */
+
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   1rem;
+  --radius-full: 9999px;
+
+  /* --- Transitions --- */
+
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+}
