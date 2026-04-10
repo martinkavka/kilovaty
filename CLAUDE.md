@@ -19,7 +19,7 @@ content/           # Strukturovaný obsah v Markdownu (single source of truth)
 brand/             # Vizuální identita, tokeny, hlas značky
   tokens.css       # Design tokens (barvy, typografie, spacing)
   voice.md         # Detailní pravidla hlasu značky
-web/               # Web kilovaty.cz
+docs/              # Web kilovaty.cz (GitHub Pages servíruje z /docs)
 presentations/     # Prezentace na školení a konference
 ```
 
@@ -134,7 +134,7 @@ Tyto fráze nikdy nepoužíváme. Jsou to přesně ten typ vaty, který pomáhá
 ## Pravidla pro kód
 
 - **Vanilla HTML + CSS, bez build stepu.** Žádný framework, bundler ani preprocesory, pokud to nebude výslovně schváleno.
-- **Jediný CSS soubor:** `web/style.css` — všechny komponenty a styly na jednom místě.
+- **Jediný CSS soubor:** `docs/style.css` — všechny komponenty a styly na jednom místě.
 - **Design tokens** jsou definované přímo v `:root` v `style.css` (ne v externím souboru).
 - **Fonty:**
   - Bricolage Grotesque — nadpisy (`--font-heading`)
@@ -157,7 +157,7 @@ Web je **z velké části hotový** (duben 2026). Všechny stránky existují a 
 ### Struktura souborů
 
 ```
-web/
+docs/
   index.html                      # Homepage
   o-nas.html                      # O nás + příběh + zakladatelé + služby nudge
   sluzby.html                     # Přehled služeb + roční program pricing
