@@ -19,9 +19,12 @@ content/           # Strukturovaný obsah v Markdownu (single source of truth)
 brand/             # Vizuální identita, tokeny, hlas značky
   tokens.css       # Design tokens (barvy, typografie, spacing)
   voice.md         # Detailní pravidla hlasu značky
-docs/              # Web kilovaty.cz (GitHub Pages servíruje z /docs)
+docs/              # Web kilovaty.cz (GitHub Pages servíruje z /docs, pojmenování je GH Pages konvence)
 presentations/     # Prezentace na školení a konference
+workshops/         # Materiály k offline workshopům (prezentace .pptx, handouty .docx, cvičení)
 ```
+
+**Pozor na pojmenování `docs/`:** Je to vynucená konvence GitHub Pages, ne dokumentace. Když migrujeme na Cloudflare Pages (viz níže), složku přejmenujeme na `web/`.
 
 ## Jazyk a tón
 
@@ -162,7 +165,7 @@ Web je **z velké části hotový** (duben 2026). Všechny stránky existují a 
 docs/
   index.html                      # Homepage
   o-nas.html                      # O nás + příběh + zakladatelé + služby nudge
-  sluzby.html                     # Přehled služeb + roční program pricing
+  sluzby.html                     # Přehled služeb + roční program pricing + FAQ
   sluzby/
     jak-psat.html                  # Workshop hlavní (bestseller)
     psani-s-ai.html                # Workshop AI
@@ -174,7 +177,10 @@ docs/
   blog.html                       # Blog index (Akademie srozumitelnosti)
   blog/
     01-naklady.html … 13-digitalizace.html  # 13 článků
-  kontakt.html                    # Kontakt + Calendly widget
+  kontakt.html                    # Kontakt + Calendly + formulář
+  kontakt-diky.html               # Thank-you po odeslání formuláře
+  kurz.html                       # Lead magnet landing — mini-kurz 5 lekcí
+  kurz-diky.html                  # Thank-you po přihlášení do kurzu
   style.css                       # Jediný CSS soubor
   assets/
     photos/                        # Fotky zakladatelů a recenzentů
@@ -184,11 +190,26 @@ docs/
 ### Konverzní architektura
 
 - **Každá stránka má CTA sekci** (tmavé pozadí, "Domluvit schůzku" → `kontakt.html#schuzka`).
-- **Homepage:** Hero → Stats → Problem/Solution → Before/After → Služby (3 karty + upsell roční program) → Testimonial → Quotes → CTA.
-- **Služby detail:** Popis → Pro koho → Co získáte (`.benefit-grid` dlaždice) → Jak to probíhá (`.timeline` vizuální časová osa) → Cena → Testimonial → Cross-sell (2 další služby) → CTA. Sticky CTA bar po 400px scrollu.
-- **Blog:** "Akademie srozumitelnosti" — kuratovaný, bez dat. Featured karty → tematické sekce → interlude (odkaz na workshop) → širší kontext. Každý článek má cílené article-cta (mapované na relevantní službu) + 2 related články.
+- **Homepage:** Hero → Trusted logos → Before/After → Stats → Problem/Solution → Služby (3 karty + upsell roční program) → Testimonial → Mini-kurz (lead magnet) → Quotes → CTA.
+- **Služby detail:** Popis → Pro koho → Co získáte (`.benefit-grid` dlaždice) → Jak to probíhá (`.timeline` vizuální časová osa) → Cena + `.roi-box` (návratnost) → Testimonial → Cross-sell (2 další služby) → CTA. Sticky CTA bar po 400px scrollu.
+- **sluzby.html:** Přehled workshopů → další služby → roční program pricing → **FAQ sekce (8 otázek, native `<details>`)** → CTA.
+- **testovani.html:** Má navíc `.package-box` s rozpisem „V ceně" pro interní a externí testování.
+- **Blog:** "Akademie srozumitelnosti" — kuratovaný, bez dat. **Nahoře `.kurz-promo` widget** (lead magnet) → featured karty → tematické sekce → interlude (odkaz na workshop) → širší kontext. Každý článek má cílené article-cta (mapované na relevantní službu) + 2 related články.
 - **O nás:** Příběh → Co děláme → Timeline → Zakladatelé → Quotes → Služby karty → CTA.
-- **Kontakt:** Calendly widget s micro-proof (citát Janků) + kontaktní údaje + fakturační údaje.
+- **Kontakt:** Calendly widget s micro-proof (citát Janků) → **formulář „Raději napište" (Web3Forms)** → kontaktní údaje + fakturační údaje → CTA.
+- **Lead magnet** (`kurz.html`): 5 lekcí srozumitelného psaní jako PDF. Formulář (Web3Forms) → `kurz-diky.html` → PDF se posílá mailem. Promo widget `.kurz-promo` na homepage (vlastní sekce) a na blog.html (nahoře, bg-warm).
+
+### Formuláře a Web3Forms
+
+Dva formuláře (`kontakt.html`, `kurz.html`) posílají přes **Web3Forms** (unlimited free tier). Oba mají:
+- `action="https://api.web3forms.com/submit"`, method POST
+- Hidden `access_key` — **placeholder `DOPLNIT-WEB3FORMS-KEY`**, musí se doplnit reálný klíč z web3forms.com
+- Hidden `redirect` — URL thank-you stránky (aktuálně `martinkavka.github.io/kilovaty/...`, po migraci změnit na `kilovaty.cz/...`)
+- Honeypot pole `botcheck` (schovaný checkbox)
+- GDPR checkbox s odkazem na mail pro odhlášení
+- Submit button plné šířky s šipkou
+
+Thank-you stránky (`kontakt-diky.html`, `kurz-diky.html`) mají `noindex` meta a navádějí na další krok (blog, workshop, druhý magnet).
 
 ### Testimonials — mapování na stránky
 
@@ -225,18 +246,49 @@ Každý blogpost má cílené CTA směřující na relevantní službu:
 - `.services-upsell` — jednořádkový odkaz na roční program / všechny služby.
 - `.benefit-grid` / `.benefit-tile` — 2-sloupcový grid dlaždic (1 sloupec mobil). Warm pozadí, accent border-left. Používá se na všech service detail stránkách pro „Co získáte" / „Proč se vyplatí" / „Co měříme".
 - `.timeline` / `.timeline-step` / `.timeline-num` / `.timeline-content` — vizuální časová osa se svislou čárou a accent kolečky s čísly. Používá se na všech service detail stránkách pro „Jak to probíhá". Pozor: uvnitř `.content` je potřeba override `.content ol.timeline` kvůli specificitě.
+- `.roi-box` — accent-light pozadí, border-left, eyebrow „VRÁTÍ SE VÁM TO" / „PROČ SE TO VYPLATÍ" + krátká kalkulace návratnosti. Na každé service detail stránce před cenou.
+- `.package-box` — warm pozadí, border-left, cena + seznam „V ceně" s checkmarkem. Používá se na testovani.html pro rozpis interního/externího balíčku.
+- `.faq-list` / `.faq-item` — native HTML5 `<details>`/`<summary>` accordion, žádný JS. Plusko/mínusko indikátor. Používá se na sluzby.html.
+- `.contact-form-wrap` / `.contact-form` / `.form-field` / `.form-check` — styling formuláře. Card container s padding + rounded, labely display:block nad inputy, input 100% width, focus accent border. `.form-row` je 2-sloupcový grid pro dvojice polí.
+- `.kurz-promo` — lead magnet widget (strong + span + button). Default pozadí `var(--bg)` (krémová), border-left accent. Na homepage ve vlastní sekci, na blogu inline override na `var(--bg-warm)`.
+- `.diky-hero` — centrovaný hero pro thank-you stránky (větší H1, krátký podtitul, 2 button akce).
+
+## Nasazení a deploy
+
+**Aktuální stav:** GitHub Pages, servíruje z `docs/` na branchi `main`. URL: `https://martinkavka.github.io/kilovaty/`. Deploy trvá 2–5 minut po pushi.
+
+**Plánovaná migrace → Cloudflare Pages** (až si Martin a Dalibor odsouhlasí finální verzi webu):
+1. Cloudflare dashboard → Pages → Connect to Git → repo `martinkavka/kilovaty`
+2. Build settings: framework None, output directory `docs/`
+3. Připojit doménu `kilovaty.cz` (Cloudflare DNS to zvládne bez čekání)
+4. Po migraci: přejmenovat `docs/` na `web/` (konvence GH Pages tam už nebude potřeba) a aktualizovat output directory v Cloudflare
+5. **Aktualizovat redirect URL** ve formech `kontakt.html` a `kurz.html` z `https://martinkavka.github.io/kilovaty/...` na `https://kilovaty.cz/...`
+
+**Proč Cloudflare, ne Vercel:** Martin už má Cloudflare účet a další weby, unlimited bandwidth ve free tieru (Vercel 100 GB), global CDN rychlejší než GH Pages.
+
+**Commit a push:** Neprováděj automaticky. Stage explicitně jen to, co se opravdu změnilo — složky jako `workshops/` nebo `_raw/` nikdy nestage do webových commitů.
 
 ## Fáze projektu
 
 > Tato sekce je interní kontext pro orientaci v prioritách. Termíny a fáze se nikdy nepromítají do produkčních textů, webu ani prezentací.
 
-**Web kilovaty.cz:** Všechny stránky hotové, konverzně optimalizované (2 kola UX/CRO auditu). Nasazeno na GitHub Pages (martinkavka.github.io/kilovaty/). Dalibor kontroluje na velkém monitoru.
+**Web kilovaty.cz:** Všech 28 stránek hotových, konverzně optimalizované (3 kola UX/CRO auditu). Nasazeno na GitHub Pages (martinkavka.github.io/kilovaty/). Dalibor kontroluje na velkém monitoru.
+
+**Čeká na dokončení (blokuje live provoz formulářů):**
+1. **Web3Forms access-key** — registrace na web3forms.com, doplnit do `kontakt.html` a `kurz.html` (placeholder `DOPLNIT-WEB3FORMS-KEY`)
+2. **PDF mini-kurzu** — vytvořit z `_raw/email-kurz-lead-magnet.docx` (5 lekcí), nahrát někam (drive/autoresponder), nastavit ve Web3Forms autoresponder s linkem
 
 **Akutně:**
-1. Dokončení webu — poslední vizuální úpravy, nasazení
-2. Prezentace na školení (16. 4. 2026)
+1. Prezentace na školení (16. 4. 2026)
+2. Dokončení bodů výše, ať formuláře funkčně sbírají leady
+
+**Po odsouhlasení webu:**
+- Migrace na Cloudflare Pages (viz oddíl „Nasazení a deploy")
+- Přejmenovat `docs/` → `web/`
+- Připojit doménu `kilovaty.cz`
 
 **Postupně podle potřeby:**
+- Případové studie (1–2 s měřitelnými výsledky od PRE nebo CRR)
 - E-mailové šablony
 - Materiály pro sociální sítě
 - Další výstupy
