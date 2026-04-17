@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-kurz srozumitelného psaní — Kilovaty</title>
+  <meta name="description" content="Pět lekcí o srozumitelném psaní zdarma. Principy, které na workshopu učíme roky. Zanechte e-mail a pošleme vám PDF.">
+  <link rel="icon" href="assets/logo/kilovaty-square-black.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Přeskočit na obsah</a>
+
+<nav class="nav" aria-label="Hlavní navigace">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="assets/logo/kilovaty-black.png" alt="Kilovaty"></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Otevřít menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a href="sluzby.html">Služby</a>
+      <a href="o-nas.html">O nás</a>
+      <a href="blog.html">Blog</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html#schuzka" class="nav-cta">Domluvit schůzku</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <div class="page-header">
+    <div class="s-inner">
+      <div class="eyebrow">Mini-kurz zdarma</div>
+      <h1>Jak psát, aby to <em>četli.</em></h1>
+      <p class="s-lead">Pět lekcí o srozumitelném psaní. Principy, které na workshopu učíme roky. Žádné floskule, žádná „transformační synergie“.</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <p>Ve škole nás naučili sloh. Nenaučili nás psát e-maily, pokyny ani rozhodnutí tak, aby jim rozuměli i ti, kteří spěchají.</p>
+
+    <p>Tenhle mini-kurz je rekapitulace pěti principů, které učíme na workshopu Jak psát, aby to fakt četli. Na e-mail vám pošleme PDF se všemi lekcemi — ke stažení a k přečtení kdykoli.</p>
+
+    <div class="kurz-lessons">
+      <h3>Co je uvnitř</h3>
+      <ol>
+        <li>Proč se vyplatí psát srozumitelně (a kolik vás stojí, když to neděláte)</li>
+        <li>Čtyři P srozumitelného textu — a proč je klíčový čtenář, ne autor</li>
+        <li>Jak vybírat informace a jak je správně seřadit</li>
+        <li>Jak se zbavit žargonu, pasiva a řetězců podstatných jmen</li>
+        <li>Jak strukturovat text, aby ho lidé skenovali a přitom chápali</li>
+      </ol>
+    </div>
+
+    <h2>Pro koho je to dobré</h2>
+    <ul>
+      <li>Píšete v práci e-maily, směrnice, dopisy nebo rozhodnutí.</li>
+      <li>Zajímá vás plain language, ale nevíte, kde začít.</li>
+      <li>Zvažujete workshop pro tým — tohle je ochutnávka.</li>
+    </ul>
+  </div>
+
+  <section class="s s--warm">
+    <div class="contact-form-wrap">
+      <div style="text-align: center;">
+        <div class="eyebrow" style="display: inline-flex;">Pošlete mi kurz</div>
+        <h2 class="s-title" style="font-size: clamp(28px, 4vw, 40px);">Zadejte e-mail a máte to.</h2>
+      </div>
+      <p class="contact-form-intro">Žádný spam. Žádná otravná sekvence. Jen PDF v inboxu do pár minut.</p>
+
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="DOPLNIT-WEB3FORMS-KEY">
+        <input type="hidden" name="subject" value="Kilovaty.cz — nová poptávka mini-kurzu">
+        <input type="hidden" name="from_name" value="Kilovaty kurz">
+        <input type="hidden" name="redirect" value="https://martinkavka.github.io/kilovaty/kurz-diky.html">
+        <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
+        <div class="form-field">
+          <label for="name">Jméno <span class="req">*</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+
+        <div class="form-field">
+          <label for="email">E-mail <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="form-field">
+          <label for="company">Firma nebo úřad</label>
+          <input type="text" id="company" name="company" autocomplete="organization">
+        </div>
+
+        <label class="form-check">
+          <input type="checkbox" name="gdpr" required>
+          <span>Souhlasím, aby Kilovaty s.r.o. zpracovala mé údaje pro zaslání kurzu a případnou budoucí komunikaci. Kdykoli se můžu odhlásit e-mailem na <a href="mailto:jsme@kilovaty.cz">jsme@kilovaty.cz</a>.</span>
+        </label>
+
+        <button type="submit" class="btn btn-accent form-submit">Poslat mi mini-kurz</button>
+        <p class="form-note">PDF dorazí do pár minut. Zkontrolujte prosím i složku Spam.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="s">
+    <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+      <div class="eyebrow" style="display: inline-flex;">A co dál</div>
+      <h2 class="s-title" style="font-size: clamp(28px, 4vw, 40px);">Chcete to rovnou <em>naživo?</em></h2>
+      <p style="font-size: 17px; color: var(--ink-soft); margin: 16px auto 32px; max-width: 520px;">Workshop „Jak psát, aby to fakt četli“ vás a váš tým naučí principy na vlastních textech. 6 hodin, 2 lektoři, max 15 lidí.</p>
+      <a href="sluzby/jak-psat.html" class="btn btn-outline">Zjistit více o workshopu</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><img src="assets/logo/kilovaty-black.png" alt="Kilovaty"></div>
+        <p class="footer-tag">Likvidujeme slovní vatu, která dusí vaše čtenáře a stojí vás čas i peníze.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col"><h4>Služby</h4><a href="sluzby/jak-psat.html">Workshopy</a><a href="sluzby/testovani.html">Testování</a><a href="sluzby/editace.html">Editace</a><a href="sluzby/konzultace.html">Konzultace</a></div>
+        <div class="footer-col"><h4>Firma</h4><a href="o-nas.html">O nás</a><a href="blog.html">Blog</a><a href="kontakt.html">Kontakt</a></div>
+        <div class="footer-col"><h4>Spojení</h4><a href="mailto:jsme@kilovaty.cz">jsme@kilovaty.cz</a><a href="tel:+420605412328">+420 605 412 328</a><a href="tel:+420737383671">+420 737 383 671</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Kilovaty s.r.o. · IČ 23686316</span>
+      <span>Tento web běží díky litrům kávy a lásce k dobrému psaní.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const toggle = document.querySelector('.nav-toggle');
+const menu = document.querySelector('.nav-menu');
+if (toggle && menu) {
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !expanded);
+    menu.classList.toggle('is-open');
+  });
+}
+</script>
+
+</body>
+</html>

@@ -50,13 +50,67 @@
         <img src="assets/photos/recenze/janku.png" alt="" loading="lazy">
         <span>„Dalibor a Martin jsou sázka na jistotu." — <em>Štěpán Janků, Ústavní soud</em></span>
       </div>
-      <div class="calendly-inline-widget" data-url="https://calendly.com/kilovatycz/30min" style="min-width: 320px; height: 700px;"></div>
+      <div class="calendly-inline-widget" data-url="https://calendly.com/kilovatycz/30min" style="min-width: 320px; height: 700px;" title="Rezervace 30minutové schůzky"></div>
       <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     </div>
   </section>
 
-  <!-- KONTAKTNÍ ÚDAJE -->
+  <!-- FORMULÁŘ — NÍZKÁ BARIÉRA -->
   <section class="s s--warm">
+    <div class="contact-form-wrap">
+      <div style="text-align: center;">
+        <div class="eyebrow" style="display: inline-flex;">Raději napište</div>
+        <h2 class="s-title" style="font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px;">Nemusíte hned rezervovat <em>termín.</em></h2>
+      </div>
+      <p class="contact-form-intro">Napište, co potřebujete — odpovíme do 24 hodin. Obvykle dřív.</p>
+
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="DOPLNIT-WEB3FORMS-KEY">
+        <input type="hidden" name="subject" value="Kilovaty.cz — nová zpráva z formuláře">
+        <input type="hidden" name="from_name" value="Kilovaty web">
+        <input type="hidden" name="redirect" value="https://martinkavka.github.io/kilovaty/kontakt-diky.html">
+        <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Jméno <span class="req">*</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="company">Firma nebo úřad</label>
+            <input type="text" id="company" name="company" autocomplete="organization">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email">E-mail <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="message">Co vás zajímá? <span class="req">*</span></label>
+          <textarea id="message" name="message" required placeholder="Např. Zvažujeme workshop pro 12 lidí z oddělení komunikace. Rádi bychom to probrali v průběhu dubna."></textarea>
+        </div>
+
+        <label class="form-check">
+          <input type="checkbox" name="gdpr" required>
+          <span>Souhlasím, aby Kilovaty s.r.o. zpracovala mé údaje pro odpověď na tento dotaz. Údaje nikam nepředáváme, můžete je kdykoli smazat napsáním na <a href="mailto:jsme@kilovaty.cz">jsme@kilovaty.cz</a>.</span>
+        </label>
+
+        <button type="submit" class="btn btn-accent form-submit">Poslat zprávu</button>
+        <p class="form-note">Odpovíme do 24 hodin. Většinou dřív.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- KONTAKTNÍ ÚDAJE -->
+  <section class="s">
     <div class="contact-grid">
       <div>
         <div class="contact-method">
